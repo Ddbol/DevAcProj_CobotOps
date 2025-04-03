@@ -1,0 +1,54 @@
+#slim version
+# specifying the python type
+FROM python:3.8-slim
+
+# specifying the working directory of the host (your computer)
+WORKDIR /streamlit_app_cobot
+
+# copy source (. same/current wd) destination
+# copy everything from working directory into this directory inside docker container
+# best practice for host and docker conatiner directory be same for traceability
+COPY . /streamlit_app_cobot
+
+# running requirements file,
+# -r trying to read a file content versus install a package
+RUN pip install -r requirements.txt
+
+# port deafault streamlit (refer to documentation) 8501
+# add description to overview which port used - likely only used in small teams
+# set a port
+EXPOSE 8501
+
+# streamlit application immediately - person pulling doesn't have to click run manually
+# users don't need to run your program manually
+# this starts your application automatically
+CMD ["streamlit","run","cobot_st_runsum_updated.py"]
+
+
+# DOCKER COMMANDS ----------
+
+# building an image. "." = in same directory
+# - docker build -t cobot_run_summary .
+
+
+# - docker images
+
+# running locally by assigning port to image just built 
+# first port mapping to port on your computerand container (can be changed but streamlit might block port) and the second streamlit port (http;//8501 to access locally)
+# when give someone access to your container will use that port for them
+# - docker run -p 8501:8501 cobot_run_summary
+
+# - ctrl-c in terminal to stop the running
+
+
+# - docker login
+# press enter to authenticate, send to default to default browser or click on link
+
+# pushing - want it to be easy to use/manage
+# - docker tag cobot_run_summary dboland717/cobot_run_summary:latest
+
+# to confirm
+# - docker images
+
+# might take a while and need login authenticated
+# - docker push dboland717/cobot_run_summary:latest
