@@ -1,7 +1,9 @@
 # UR3 CobotOps Automation Analysis 
 
 # Dataset: 
-UR3 CobotOps Dataset - time-series data from the UR3 cobot - offers insights into operational parameters and faults.
+UR3 CobotOps Dataset - time-series data from the UR3 cobot - offers insights into operational parameters and faults. 
+
+Tyrovolas, M., Aliev, K., Antonelli, D., & Stylios, C. (2024). UR3 CobotOps [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5J891.
 
 # Objective: 
 Explore data and investigate feasibility of error prediction by machine learning
