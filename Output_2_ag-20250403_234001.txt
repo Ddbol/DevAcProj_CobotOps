@@ -1,0 +1,1295 @@
+No path specified. Models will be saved in: "AutogluonModels\ag-20250403_234001"
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.2
+Python Version:     3.11.9
+Operating System:   Windows
+Platform Machine:   AMD64
+Platform Version:   10.0.19045
+CPU Count:          4
+Memory Avail:       0.39 GB / 5.82 GB (6.6%)
+Disk Space Avail:   20.47 GB / 222.38 GB (9.2%)
+===================================================
+Presets specified: ['best_quality']
+Stack configuration (auto_stack=True): num_stack_levels=1, num_bag_folds=8, num_bag_sets=1
+Beginning AutoGluon training ... Time limit = 300s
+AutoGluon will save models to "c:\Users\USER-1\Downloads\test\final_project\AutogluonModels\ag-20250403_234001"
+Train Data Rows:    5186
+Train Data Columns: 38
+Label Column:       grip_lost_enc
+AutoGluon infers your prediction problem is: 'binary' (because only two unique label-values observed).
+	2 unique label values:  [0, 1]
+	If 'binary' is not the correct problem_type, please manually specify the problem_type parameter during Predictor init (You may specify problem_type as one of: ['binary', 'multiclass', 'regression', 'quantile'])
+Problem Type:       binary
+Preprocessing data ...
+Selected class <--> label mapping:  class 1 = 1, class 0 = 0
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    368.37 MB
+	Train Data (Original)  Memory Usage: 1.50 MB (0.4% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+			Note: Converting 1 features to boolean dtype as they only contain 2 unique values.
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', []) : 34 | ['Current_J0', 'Temperature_T0', 'Current_J1', 'Temperature_J1', 'Current_J2', ...]
+		('int', [])   :  4 | ['cycle', 'cyc_rename', 'grip_errcount', 'protect_errcount']
+	Types of features in processed data (raw dtype, special dtypes):
+		('float', [])     : 33 | ['Current_J0', 'Temperature_T0', 'Current_J1', 'Temperature_J1', 'Current_J2', ...]
+		('int', [])       :  4 | ['cycle', 'cyc_rename', 'grip_errcount', 'protect_errcount']
+		('int', ['bool']) :  1 | ['Robot_ProtectiveStop']
+	0.4s = Fit runtime
+	38 features in original data used to generate 38 features in processed data.
+	Train Data (Processed) Memory Usage: 1.47 MB (0.4% of available memory)
+Data preprocessing and feature engineering runtime = 0.66s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'accuracy'
+	To change this, specify the eval_metric parameter of Predictor()
+Large model count detected (112 configs) ... Only displaying the first 3 models of each family. To see all, set `verbosity=3`.
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}, {'activation': 'elu', 'dropout_prob': 0.10077639529843717, 'hidden_size': 108, 'learning_rate': 0.002735937344002146, 'num_layers': 4, 'use_batchnorm': True, 'weight_decay': 1.356433327634438e-12, 'ag_args': {'name_suffix': '_r79', 'priority': -2}}, {'activation': 'elu', 'dropout_prob': 0.11897478034205347, 'hidden_size': 213, 'learning_rate': 0.0010474382260641949, 'num_layers': 4, 'use_batchnorm': False, 'weight_decay': 5.594471067786272e-10, 'ag_args': {'name_suffix': '_r22', 'priority': -7}}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}, {'depth': 6, 'grow_policy': 'SymmetricTree', 'l2_leaf_reg': 2.1542798306067823, 'learning_rate': 0.06864209415792857, 'max_ctr_complexity': 4, 'one_hot_max_size': 10, 'ag_args': {'name_suffix': '_r177', 'priority': -1}}, {'depth': 8, 'grow_policy': 'Depthwise', 'l2_leaf_reg': 2.7997999596449104, 'learning_rate': 0.031375015734637225, 'max_ctr_complexity': 2, 'one_hot_max_size': 3, 'ag_args': {'name_suffix': '_r9', 'priority': -5}}],
+	'XGB': [{}, {'colsample_bytree': 0.6917311125174739, 'enable_categorical': False, 'learning_rate': 0.018063876087523967, 'max_depth': 10, 'min_child_weight': 0.6028633586934382, 'ag_args': {'name_suffix': '_r33', 'priority': -8}}, {'colsample_bytree': 0.6628423832084077, 'enable_categorical': False, 'learning_rate': 0.08775715546881824, 'max_depth': 5, 'min_child_weight': 0.6294123374222513, 'ag_args': {'name_suffix': '_r89', 'priority': -16}}],
+	'FASTAI': [{}, {'bs': 256, 'emb_drop': 0.5411770367537934, 'epochs': 43, 'layers': [800, 400], 'lr': 0.01519848858318159, 'ps': 0.23782946566604385, 'ag_args': {'name_suffix': '_r191', 'priority': -4}}, {'bs': 2048, 'emb_drop': 0.05070411322605811, 'epochs': 29, 'layers': [200, 100], 'lr': 0.08974235041576624, 'ps': 0.10393466140748028, 'ag_args': {'name_suffix': '_r102', 'priority': -11}}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'KNN': [{'weights': 'uniform', 'ag_args': {'name_suffix': 'Unif'}}, {'weights': 'distance', 'ag_args': {'name_suffix': 'Dist'}}],
+}
+AutoGluon will fit 2 stack levels (L1 to L2) ...
+Fitting 110 L1 models, fit_strategy="sequential" ...
+Fitting model: KNeighborsUnif_BAG_L1 ... Training model for up to 199.50s of the 299.25s of remaining time.
+	0.9745	 = Validation score   (accuracy)
+	0.07s	 = Training   runtime
+	0.5s	 = Validation runtime
+Fitting model: KNeighborsDist_BAG_L1 ... Training model for up to 198.84s of the 298.58s of remaining time.
+	0.9763	 = Validation score   (accuracy)
+	0.03s	 = Training   runtime
+	0.44s	 = Validation runtime
+Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 198.30s of the 298.05s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.96%)
+	Warning: Exception caused LightGBMXT_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBM_BAG_L1 ... Training model for up to 178.84s of the 278.59s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.98%)
+	Warning: Exception caused LightGBM_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: RandomForestGini_BAG_L1 ... Training model for up to 170.60s of the 270.35s of remaining time.
+	0.9882	 = Validation score   (accuracy)
+	7.16s	 = Training   runtime
+	0.73s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L1 ... Training model for up to 162.58s of the 262.32s of remaining time.
+	0.989	 = Validation score   (accuracy)
+	4.19s	 = Training   runtime
+	1.15s	 = Validation runtime
+Fitting model: CatBoost_BAG_L1 ... Training model for up to 157.11s of the 256.86s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=4.96%)
+	Warning: Exception caused CatBoost_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: ExtraTreesGini_BAG_L1 ... Training model for up to 121.25s of the 220.99s of remaining time.
+	0.9761	 = Validation score   (accuracy)
+	4.74s	 = Training   runtime
+	1.11s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L1 ... Training model for up to 114.89s of the 214.63s of remaining time.
+	0.9782	 = Validation score   (accuracy)
+	5.28s	 = Training   runtime
+	0.37s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L1 ... Training model for up to 108.22s of the 207.96s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.85%)
+	Warning: Exception caused NeuralNetFastAI_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: XGBoost_BAG_L1 ... Training model for up to 94.60s of the 194.34s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=8.23%)
+	Warning: Exception caused XGBoost_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetTorch_BAG_L1 ... Training model for up to 89.08s of the 188.82s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=2.73%)
+	Warning: Exception caused NeuralNetTorch_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBMLarge_BAG_L1 ... Training model for up to 81.42s of the 181.16s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=9.04%)
+	Warning: Exception caused LightGBMLarge_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: CatBoost_r177_BAG_L1 ... Training model for up to 72.67s of the 172.42s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=5.32%)
+	Warning: Exception caused CatBoost_r177_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetTorch_r79_BAG_L1 ... Training model for up to 66.40s of the 166.14s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=2.51%)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBM_r131_BAG_L1 ... Training model for up to 60.75s of the 160.49s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=4.61%)
+	Warning: Exception caused LightGBM_r131_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetFastAI_r191_BAG_L1 ... Training model for up to 52.14s of the 151.89s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.32%)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: CatBoost_r9_BAG_L1 ... Training model for up to 45.60s of the 145.35s of remaining time.
+	Memory not enough to fit 8 folds in parallel. Will train 4 folds in parallel instead (Estimated 12.52% memory usage per fold, 50.09%/80.00% total).
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=12.52%)
+	Warning: Exception caused CatBoost_r9_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBM_r96_BAG_L1 ... Training model for up to 32.30s of the 132.04s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=2.76%)
+	Warning: Exception caused LightGBM_r96_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetTorch_r22_BAG_L1 ... Training model for up to 17.05s of the 116.79s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=1.77%)
+	Warning: Exception caused NeuralNetTorch_r22_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: XGBoost_r33_BAG_L1 ... Training model for up to 6.92s of the 106.66s of remaining time.
+	Memory not enough to fit 8 folds in parallel. Will train 4 folds in parallel instead (Estimated 19.77% memory usage per fold, 79.06%/80.00% total).
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=19.77%)
+	Warning: Exception caused XGBoost_r33_BAG_L1 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: WeightedEnsemble_L2 ... Training model for up to 299.34s of the 97.63s of remaining time.
+	Ensemble Weights: {'RandomForestEntr_BAG_L1': 1.0}
+	0.989	 = Validation score   (accuracy)
+	0.28s	 = Training   runtime
+	0.0s	 = Validation runtime
+Fitting 108 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L2 ... Training model for up to 97.31s of the 97.17s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.21%)
+	Warning: Exception caused LightGBMXT_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBM_BAG_L2 ... Training model for up to 90.57s of the 90.44s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.49%)
+	Warning: Exception caused LightGBM_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: RandomForestGini_BAG_L2 ... Training model for up to 82.68s of the 82.55s of remaining time.
+	0.9894	 = Validation score   (accuracy)
+	6.1s	 = Training   runtime
+	0.6s	 = Validation runtime
+Fitting model: RandomForestEntr_BAG_L2 ... Training model for up to 75.84s of the 75.71s of remaining time.
+	0.9898	 = Validation score   (accuracy)
+	3.13s	 = Training   runtime
+	0.65s	 = Validation runtime
+Fitting model: CatBoost_BAG_L2 ... Training model for up to 71.93s of the 71.80s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=5.49%)
+	Warning: Exception caused CatBoost_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: ExtraTreesGini_BAG_L2 ... Training model for up to 65.52s of the 65.38s of remaining time.
+	0.9882	 = Validation score   (accuracy)
+	2.99s	 = Training   runtime
+	0.32s	 = Validation runtime
+Fitting model: ExtraTreesEntr_BAG_L2 ... Training model for up to 61.10s of the 60.97s of remaining time.
+	0.9892	 = Validation score   (accuracy)
+	2.88s	 = Training   runtime
+	0.79s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L2 ... Training model for up to 56.76s of the 56.63s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.57%)
+	Warning: Exception caused NeuralNetFastAI_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: XGBoost_BAG_L2 ... Training model for up to 50.42s of the 50.29s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=4.36%)
+	Warning: Exception caused XGBoost_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetTorch_BAG_L2 ... Training model for up to 43.34s of the 43.21s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=1.36%)
+	Warning: Exception caused NeuralNetTorch_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBMLarge_BAG_L2 ... Training model for up to 35.98s of the 35.85s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=7.23%)
+	Warning: Exception caused LightGBMLarge_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: CatBoost_r177_BAG_L2 ... Training model for up to 29.13s of the 29.00s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=4.56%)
+	Warning: Exception caused CatBoost_r177_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetTorch_r79_BAG_L2 ... Training model for up to 21.66s of the 21.53s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=2.32%)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: LightGBM_r131_BAG_L2 ... Training model for up to 14.25s of the 14.12s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=4.42%)
+	Warning: Exception caused LightGBM_r131_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: NeuralNetFastAI_r191_BAG_L2 ... Training model for up to 6.29s of the 6.15s of remaining time.
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with ParallelLocalFoldFittingStrategy (4 workers, per: cpus=1, gpus=0, memory=3.85%)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L2 to fail during training... Skipping this model.
+		[Errno 203] AssignProcessToJobObject() failed
+Detailed Traceback:
+Traceback (most recent call last):
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 2106, in _train_and_save
+    model = self._train_single(**model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\trainer\abstract_trainer.py", line 1993, in _train_single
+    model = model.fit(X=X, y=y, X_val=X_val, y_val=y_val, X_test=X_test, y_test=y_test, total_resources=total_resources, **model_fit_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\abstract\abstract_model.py", line 925, in fit
+    out = self._fit(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\stacker_ensemble_model.py", line 270, in _fit
+    return super()._fit(X=X, y=y, time_limit=time_limit, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 298, in _fit
+    self._fit_folds(
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\bagged_ensemble_model.py", line 724, in _fit_folds
+    fold_fitting_strategy.after_all_folds_scheduled()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\autogluon\core\models\ensemble\fold_fitting_strategy.py", line 673, in after_all_folds_scheduled
+    self.ray.init(**ray_init_args)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\worker.py", line 1712, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 336, in __init__
+    self.start_head_processes()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1367, in start_head_processes
+    self.start_monitor()
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\node.py", line 1261, in start_monitor
+    process_info = ray._private.services.start_monitor(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 2158, in start_monitor
+    process_info = start_ray_process(
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\services.py", line 1027, in start_ray_process
+    ray._private.utils.set_kill_child_on_death_win32(process)
+  File "C:\Users\USER-1\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\ray\_private\utils.py", line 907, in set_kill_child_on_death_win32
+    raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject() failed")
+OSError: [Errno 203] AssignProcessToJobObject() failed
+Fitting model: WeightedEnsemble_L3 ... Training model for up to 299.34s of the -2.51s of remaining time.
+	Ensemble Weights: {'RandomForestEntr_BAG_L2': 0.625, 'ExtraTreesEntr_BAG_L2': 0.312, 'KNeighborsUnif_BAG_L1': 0.062}
+	0.9902	 = Validation score   (accuracy)
+	0.44s	 = Training   runtime
+	0.0s	 = Validation runtime
+AutoGluon training complete, total runtime = 303.11s ... Best model: WeightedEnsemble_L3 | Estimated inference throughput: 904.9 rows/s (5186 batch size)
+Disabling decision threshold calibration for metric `accuracy` due to having fewer than 10000 rows of validation data for calibration, to avoid overfitting (5186 rows).
+	`accuracy` is generally not improved through threshold calibration. Force calibration via specifying `calibrate_decision_threshold=True`.
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("c:\Users\USER-1\Downloads\test\final_project\AutogluonModels\ag-20250403_234001")
