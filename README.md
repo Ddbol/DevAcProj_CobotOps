@@ -8,18 +8,18 @@ Explore data and investigate feasibility of error prediction by machine learning
 
 # Summary: 
 Exploratory data analysis of UR3 CobotOps dataset. Investigated machine learning models (time series and classic supervised, initial screening with AutoGluon) to predict faults. Deployed Streamlit
-application, via streamlit url and Docker, to generate a summary table and visualisations from uploaded run data.
+application, via streamlit url and contarised in Docker, to generate a summary table and visualisations from uploaded run data.
 
 # Streamlit application information: 
 - Streamlit and docker files in streamlit_app_cobot folder using cobot_st_runsum_updated.py application code
-- Two .xlsx and 2 .csv files all with same data as to run docker will only recognise file from directory (files will have to be renamed cobot_dataset.xlsx or .csv)
+- Two .xlsx and twwo .csv files all with same data as to run docker will only recognise file from directory (files will have to be renamed cobot_dataset.xlsx or .csv)
 - Other files: .joblib - exported encoder, requirements.txt & dockerfile - docker deployment
 - some generated png graphs as examples but all files can be downloaded from Streamlit_cobot_app_graphs_all_.zip
 - Cobot_data_summ_app_vid.mp4 is video of application running 
 - Docker - https://hub.docker.com/r/dboland717/cobot_run_summary
-- cobotsummarygenerator.streamlit.app
+- https://cobotsummarygenerator.streamlit.app
 
-- New application code file uploaded cobot_st_runsum_updated_show_graph.py to show more graphs within the application. Only rolled out to streamlit url cobotdatasummarygeneratorwithgraphs.streamlit.app
+- Second application code file uploaded cobot_st_runsum_updated_show_graph.py to show more graphs within the application. Only rolled out to streamlit url https://cobotdatasummarygeneratorwithgraphs.streamlit.app
 
 # Tools used: 
 Python, pandas, numpy, matplotlib, seaborn, scikitlearn, regularisation (scaling), autogluon, RandomForestClassifier, KNN, Docker, Streamlit, tensorflow, keras
